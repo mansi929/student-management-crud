@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body class="list-page">
+
+    <div class="list-container">
+
+        <div class="page-header">
+            <div>
+                <h1>All Students</h1>
+                <p>Student Management System</p>
+            </div>
+
+            <a href="/student/new" class="btn add-btn">+ Add Student</a>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="student-table">
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Roll No</th>
+                        <th>Branch</th>
+                        <th>Semester</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% for(let student of students) { %>
+
+                        <tr>
+                            <td>
+                                <%= student.name %>
+                            </td>
+
+                            <td>
+                                <%= student.rollNo %>
+                            </td>
+
+                            <td>
+                                <%= student.branch %>
+                            </td>
+
+                            <td>
+                                <%= student.semester %>
+                            </td>
+
+                            <td>
+                                <%= student.email || "None" %>
+                            </td>
+
+                            <td>
+                                <%= student.phone || "None" %>
+                            </td>
+
+                            <td>
+                                <%= student.gender || "None" %>
+                            </td>
+
+                            <td>
+                                <%= student.address || "None" %>
+                            </td>
+
+                            <td class="action-cell">
+
+                                <a
+                                    href="/student/<%= student._id %>/edit"
+                                    class="btn edit-btn">
+                                    Edit
+                                </a>
+
+                                <form
+                                    method="post"
+                                    action="/student/<%= student._id %>?_method=DELETE"
+                                    class="delete-form">
+
+                                    <button type="submit" class="btn delete-btn">
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </td>
+                        </tr>
+
+                    <% } %>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
